@@ -2,7 +2,7 @@
 FROM php:7.4-fpm
 
 # Install necessary PHP extensions and dependencies
-RUN apt-get update && apt-get install -y libonig-dev
+RUN apt-get update && apt-get install -y libonig-dev git zip unzip
 RUN docker-php-ext-install pdo pdo_mysql mbstring
 
 # Set the working directory
