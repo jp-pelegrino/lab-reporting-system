@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lab-reporting-system-app
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www
+    networks:
+      - lab-reporting-system-network
+
+  web:
+    image: nginx:alpine
+    container_name: lab-reporting-system-web
+    volumes:
+      - .:/var/www
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    networks:
+      - lab-reporting-system-network
+
+  db:
+    image: mysql:5.7
+    container_name: lab-reporting-system-db
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - lab-reporting-system-network
+
+volumes:
+  db_data:
+
+networks:
+  lab-reporting-system-network:
+    driver: bridge

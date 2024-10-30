@@ -62,3 +62,31 @@ This was my final year project at AUST. Built with Laravel 5.3.
 ![Imgur](https://i.imgur.com/4mQ0HMn.png)
 
 ![Imgur](https://i.imgur.com/GQAcgve.png)
+
+## Running the application in a Docker container
+
+1. Ensure you have Docker and Docker Compose installed on your machine.
+1. Clone the repository and navigate to the project root directory.
+1. Copy the `.env.example` file to `.env` and update the necessary environment variables.
+1. Build and start the Docker containers using Docker Compose:
+    ```
+    docker-compose up --build
+    ```
+1. Once the containers are up and running, you can access the application at `http://localhost`.
+1. Run the database migrations and seeders:
+    ```
+    docker-compose exec app php artisan migrate --seed
+    ```
+1. You can now log in with the following credentials:
+
+    *Email:* admin@email.com
+
+    *Pass:* 12345
+
+    There is also another user of role `Laboratorist`.
+
+    *Email:* lab@email.com
+
+    *Pass:* 12345
+
+1. Front page is at route `front/index`
